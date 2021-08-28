@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Calculator</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+        }
+
+        section{
+            width: 100%;
+            height: 100vh;
+            /* background-color: #ffffff; */
+            padding: 1em;
+        }
+        .container{
+            width: 70%;
+            /* min-width: 80%; */
+            max-width: 40em;
+            min-height:30em;
+            margin: auto;
+            box-shadow: 1px 1px 5px #000;
+           
+        }
+        .input{
+            
+            display: flex;
+           
+        }
+        hr{
+            color:#b4b9b9;
+        }
+        table, tr, th, td{
+            border:1px solid #000000;
+            text-align: center;
+        }   
+        /* Media Query */
+        @media screen and (max-width: 900px) {
+            .container{
+                width: 100%;
+               
+            }
+            .input{
+                display: block;
+                /* width: 80%; */
+                margin: auto;
+            }
+            
+        }
+        /* Custom style */
+        .ta-center{
+            text-align: center;
+        }
+        .p-fit{
+            padding: .5em;
+        }
+        .ms-2{
+            margin-left: 3em;
+        }
+        .mt-3{
+            margin-top:3em;
+        }
+        .d-flex{
+            display: flex;
+        }
+
+        .form-label{
+            display: block;
+            
+            margin: .5em 0;
+        }
+        .form-control{
+            display: block;
+            padding: .3em;
+            font-size: medium;
+            
+
+        }
+        .form-group{
+            margin: 1em;
+            
+        }
+        .btn{
+            padding: .5em;
+            font-size: medium;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 1px;
+            border: none;
+            outline: none;
+        }
+        .btn:active{
+
+            opacity: .5;
+        }
+        .btn-primary{
+            background-color: rgb(8, 115, 255);
+            color:#ffffff;
+        }
+        .btn-danger{
+            background-color: rgb(255, 255, 23);
+            
+        }
+        .btn-life{
+            background-color: #000000;
+            color:#ffffff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <section>
+       <div class="container p-fit">
+           <h2 class="ta-center p-fit">Welcome to Bills Calculator</h2>
+            <form  action="">
+                <div class="input">
+                    <div class="form-group ">
+                        <label class="form-label" for="product">Product</label>
+                        <input class="form-control" type="text" id="product">
+    
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="range">Range</label>
+                        <input class="form-control" type="number" id="range">
+                    </div>
+                </div>
+                <h4 class="ta-center" id="alert"></h4>
+                <div class="form-group">
+                    <button id="calcBtn" type="submit" class="btn btn-primary">Calculate</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                    <button class="btn btn-life" id="reload">New</button>
+                </div>
+                
+            </form>
+            <br>
+            <hr>
+            <br>
+            <div class="display-product d-flex">
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th class="p-fit">Product</th>
+                            <th class="p-fit">Range</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                      <!-- <tr>
+                          <td></td>
+                          <td></td>
+                      </tr> -->
+                    </tbody>
+                </table>
+                <div class="display-range p-fit">
+                    <h3 class="p-fit ms-2 mt-3">In total: <span id="totalRange" class="p-fit"></span></h3>
+                </div>
+            </div>
+       </div>
+       <h1></h1>
+    </section>
+
+
+    <!-- Javascript code -->
+    <script>
+
+        // Select Element
+        const product = document.getElementById("product");
+        const range = document.getElementById("range");
+        const calcBtn = document.getElementById("calcBtn");
+        const reload = document.getElementById("reload");
+        const alert = document.getElementById("alert")
+
+        const tbody = document.getElementById("tbody");
+        const display = document.getElementById("totalRange");
+        let sum = 0;
+       
+
+        // DOM Manupulate
+        reload.addEventListener('click', ()=>{
+            reload.reload();
+        })
+        calcBtn.addEventListener('click', (e)=>{
+            e.preventDefault();
+
+            if(product.value == '' || range.value == ''){
+                alert.innerHTML = 'Invalid Creadential!';
+                alert.style.color = 'red';
+            }else{
+                alert.innerHTML = ''
+                // Creat Elements
+                const  tr = document.createElement('tr');
+                const td1  = document.createElement('td')
+                const td2  = document.createElement('td')
+                tbody.appendChild(tr)
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+
+                // Dispaly Data
+                td1.innerHTML = product.value
+                td2.innerHTML = Number(range.value)
+
+                display.innerHTML = sum += Number(range.value)
+            }
+
+        })
+    </script>
+</body>
+</html>
